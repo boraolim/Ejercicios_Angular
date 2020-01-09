@@ -1,0 +1,33 @@
+<head>
+    <title>Angular Project</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <h1>Angular Project</h1>
+    
+    <div ng-app="indexModule">
+
+      <!-- Controller. -->
+      <div ng-controller="indexController as vm">
+
+        <label>Monthy Payment:</label>
+        <input type="text" ng-model="vm.model.monthlyPayment" />      
+        <h1 ng-bind="vm.model.monthlyPayment | currency"></h1>
+
+        <label>Current Date:</label>
+        <input type="text" ng-model="vm.model.dateAdd" />      
+        <h1 ng-bind="vm.model.dateAdd | date : 'fullDate'"></h1>
+
+      </div>
+    </div>
+
+    <!-- Externals -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/lodash/lodash.js"></script>
+
+    <!-- Internals -->
+    <script src="index.module.js"></script>
+    <script src="index_controller.js"></script>
+</body>

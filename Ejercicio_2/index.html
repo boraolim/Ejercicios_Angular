@@ -1,0 +1,114 @@
+<head>
+
+</head>
+<body style="font-size: 0.8em; padding: 25px;">
+    <div ng-app="indexModule">
+        <div ng-controller="indexController as vm">
+
+             <!-- Datos del cliente. -->
+             <table style="vertical-align: middle; text-align: left;">
+                <thead style="font-weight: 800; border: 1px solid;">
+                    <tr>
+                        <th colspan="2">Datos del cliente:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Nombre:</label>
+                        </td>
+                        <td>
+                            <input type="text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Edad:</label>
+                        </td>
+                        <td>
+                            <input type="number"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <!-- Area de captura de datos. -->
+            <table style="vertical-align: middle; text-align: left;">
+                <thead style="font-weight: 800; border: 1px solid;">
+                    <tr>
+                        <th colspan="3">Captura del producto:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Nombre del producto:</label>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="vm.product.NombreProducto"/>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Cantidad:</label>
+                        </td>
+                        <td>
+                            <input type="number" ng-model="vm.product.Cantidad"/>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Costo:</label>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="vm.product.Precio"/>
+                        </td>
+                        <td><button ng-click="vm.agregarProducto()">Agregar nuevo producto</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br/>
+
+            <!-- Lista de Productos -->
+            <table style="border: 1px solid; vertical-align: middle; text-align: center; width: 100%;">
+                <thead style="font-weight: 800; border: 1px solid;">
+                    <tr>
+                        <th>Nombre del producto:</th>
+                        <th>Cantidad:</th>
+                        <th>Costo:</th>
+                        <th>Total:</th>
+                        <th colspan="2">Operaciones:</th>
+                    </tr>
+                </thead>
+                <tbody style="font-weight: normal; border: 1px solid;">
+                    <tr ng-repeat="item in vm.model.products track by $index" ng-if="item.FlgEsReloj" ng-style="item.NombreProducto == 'Reloj' ? {'color':'#FF0000','font-style': 'italic', 'text-decoration': 'line-through'} :''">
+                        <td><span ng-bind="::item.NombreProducto"></span></td>
+                        <td><span ng-bind="::item.Cantidad"></span></td>
+                        <td><span ng-bind="::item.Precio | currency:USD$:2"></span></td>
+                        <td><span ng-bind="::item.Precio * item.Cantidad | currency:USD$:2"></span></td>
+                        <td><button ng-click="vm.posponerProducto($index)">Posponer compra</button></td>
+                        <td><button ng-click="vm.eliminarProducto($index)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr style="border: 1px solid;">
+                        <td colspan="3"></td>
+                        <td>Total General: <label style="font-weight: 800;" ng-bind="vm.model.total | currency:USD$:2"></label s></td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+	
+    <!-- External Scripts -->
+    <script src="node_modules/angular/angular.js"></script>
+
+    <!-- Internal Scripts -->
+    <script src="index.module.js"></script>
+    <script src="index.controller.js"></script>
+</body>

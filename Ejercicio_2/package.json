@@ -1,0 +1,20 @@
+{
+  "name": "exerciseone",
+  "version": "1.0.0",
+  "description": "Ejercicio de Angular para capturar datos.",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.7.9",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "facturas",
+    "ejercicios"
+  ],
+  "author": "OLIMPO BONILLA",
+  "license": "MIT"
+}

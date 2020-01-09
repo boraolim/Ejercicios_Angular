@@ -1,0 +1,112 @@
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+   <!-- App -->
+   <div ng-app="escuelaModule">
+
+      <div ng-controller="alumnoController as vm">
+        <label>Nombre:</label>
+        <input type="text" ng-model="vm.model.name">
+        <!-- Siempre hay que ponerlo. Si se usa ng-bind, se tiene que usar para solo checar que se muestre la información. -->
+        <h1 ng-bind="::vm.model.name"></h1>
+        <br />
+        <label >Edad:</label>
+        <input type="number" ng-model="vm.model.age">
+        
+        <h1 ng-bind="vm.model.age | numberToText"></h1>
+
+        <br />
+        <label>¿Está activo?</label>
+        <input type="checkbox" id="chkIsChecked" ng-model="vm.model.isActive" >
+        <br/>
+        <label>¿Es externo?</label>
+        <input type="checkbox" ng-model="vm.model.isForeignStudent" >
+        <br/>
+
+        <div ng-show="vm.model.isForeignStudent">
+            <label>Pais de origen (show):</label>
+            <input type="text" ng-model="vm.model.country" >
+        </div>
+
+        <div ng-if="vm.model.isForeignStudent" ng-init="vm.model.isForeignStudent=true">
+            <label>Pais de origen (if):</label>
+            <input type="text" ng-model="vm.model.country" >
+            <h1 ng-bind="vm.model.country"></h1>
+            
+        </div>
+        <br/>
+
+        <button ng-click="vm.showName()">Show name</button>
+
+        <!-- Asignatures-->
+        <ul>
+            <li ng-repeat="item in vm.model.asignatures">
+             <!-- Materia: {{::item.asignature}}, Calificación: {{::item.score}} -->
+             <span ng-bind="::item"></span>
+            </li>
+        </ul>
+
+
+        <!-- Scores -->
+        <ul>
+            <li ng-repeat="item in vm.model.scores">
+                Materia: <span ng-bind="::item.asignature"></span>
+                <!-- Calificación: <span ng-bind="::item.score" ng-style="item.score > 6 ? '' : { 'color':'red'}"></span> -->
+                Calificación: <span ng-bind="::item.score" ng-class="$index % 2 == 0 ? 'even' : 'odd'"></span>
+            </li>
+        </ul>
+
+        <div>Hola a todos.... Prueba</div>
+
+
+        <button ng-click="vm.inactivateAlumno()">Activate alumn:</button>
+      </div>
+   </div>
+
+    <!-- Scripts externos. -->
+    <script src="node_modules/angular/angular.js"></script>
+    
+    <!-- Scripts internos. -->
+    <script src="escuela.module.js"></script>
+    <script src="data.service.js"></script>
+    <script src="alumno.controller.js"></script>
+    <script src="numbertotext.filter.js"></script>
+
+</body>
+
+<!-- 
+
+    -- Directives.
+    
+    ng-app -> Inicializar Angular.
+    ng-controller
+    ng-model (2 way)
+    ng-bind (1 way or 1 way 1 time)
+    ::ng-bind (1 way 1 time)
+    ng-click
+    ng-show => aplica un estilo CSS.
+    ng-hide => de mas (no se usa)
+    ng-if => oculta y elimina el elemento del DOM.
+    ng-repeat => Agrega elementos de un array. item es toma un elemento de la lista.
+    ng-style => Agregar un estilo basado en una propiedad del módelo y aplicarlo de manera dinámica.
+    ng-class => aplica el estilo css3 (no recomendable por consumo de performance).
+    ng-disable => Deshabilitar o habilitar elementos de input (text).
+    ng-readonly => Modo lectura. Se puede copiar el contenido del text.
+    * ng-options -> Importantes.
+    
+    Estas son las directivas base generales.
+
+    -- Angular Expression
+    {{ }} -> Siempre (1 way)
+    {{::}}  -> Una vez (1 way 1 time)
+
+    -- Components
+    * Module      -- Agrupador lógico de otros componentes.
+    * Controller  -- Controlador.
+    * Service/Factory -- Escribir funciones que pueden ser reutilizadas.
+    * Filter        -- Convertidor.
+    * Custom Filter -- los que hago yo. 
+
+ -->

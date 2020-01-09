@@ -1,0 +1,21 @@
+{
+  "name": "schoolapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "school",
+    "scripts",
+    "angularjs"
+  ],
+  "author": "Olimpo Bonilla",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.9",
+    "bootstrap": "^4.4.1",
+    "lodash": "^4.17.15"
+  }
+}
