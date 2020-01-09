@@ -1,0 +1,24 @@
+{
+  "name": "examen",
+  "version": "1.0.0",
+  "description": "Examen de conocimientos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "examen",
+    "prueba",
+    "solucion",
+    "angular"
+  ],
+  "author": "Olimpo Bonilla Ramirez",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.9"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2"
+  }
+}
