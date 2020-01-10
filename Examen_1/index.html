@@ -1,7 +1,9 @@
 <head>
+    <link rel="stylesheet" type="tetx/css" href="node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body class="container body-content">
 
     <h1>Mi examen.</h1>
 
@@ -11,95 +13,67 @@
         <!-- Primer Contolador. -->
         <div ng-controller="indexController1 as vm">
 
+            <div id="Login">
+                <div class="form-group">
+                    <label class="control-label">Nombre del Usuario:</label>
+                    <select class="form-control" ng-options="operator2.id as operator2.name for operator2 in vm.model.arryUsers" ng-model="vm.model.blogObjeto.autorComentario" />
+
+                    <!--
+                    <select class="form-control" ng-model="vm.model.blogObjeto.autorComentario">
+                        <option ng-repeat="bt in vm.model.arryUsers track by $index" ng-value="bt.name">{{bt.name}}</option>
+                    </select>
+                    -->
+                </div>
+            </div>
+
+
             <!-- Captura de comentarios. -->
-            <table style="vertical-align: middle; text-align: left;">
-                <thead style="font-weight: 800; border: 1px solid;">
-                    <tr>
-                        <th colspan="3">Captura de comentarios:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <label>Comentario:</label>
-                        </td>
-                        <td>
-                            <textarea rows="4" cols="50" ng-model="vm.model.blogObjeto.comentarioTxt"></textarea>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Tipo de comentario:</label>
-                        </td>
-                        <td>
+            <div id="dvLogin" class="form">
+                <p>Captura de informaci&oacute;n:</p>
+                
+                <div class="form-group">
+                  <label class="control-label">Comentario:</label>
+                  <textarea rows="4" cols="50" class="form-control form-control-sm" ng-model="vm.model.blogObjeto.comentarioTxt"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label">Tipo de comentario:</label>
+                    <label class="form-check-label">
+                        <input type="radio" name="Privacity" value="Publico" class="form-check-input" ng-model="vm.model.blogObjeto.tipoComentario"> Público
+                    </label>
+                    <label class="form-check-label">
+                        <input type="radio" name="Privacity" value="Privado" class="form-check-input" ng-model="vm.model.blogObjeto.tipoComentario"> Privado
+                    </label>
+                </div>
 
-                            <label>
-                                <input type="radio" name="Privacity" value="Publico" ng-model="vm.model.blogObjeto.tipoComentario"> Público
-                            </label>
-                            <label>
-                                <input type="radio" name="Privacity" value="Privado" ng-model="vm.model.blogObjeto.tipoComentario"> Privado
-                            </label>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Nombre del producto dirigido:</label>
-                        </td>
-                        <td>
-                            <select ng-model="vm.model.blogObjeto.nombreProducto">
-                                <!-- MALO. -->
-                                <option ng-repeat="bt in vm.model.arryNombreProducto track by $index" ng-value="bt.name">{{bt.name}}</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>     
-                    <tr>
-                        <td>
-                            <label>Prioritario:</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" ng-model="vm.model.blogObjeto.flgPrioritario" >
-                        </td>
-                        <td></td>
-                    </tr>               
-                    <tr>
-                        <td>
-                            <label>Nombre del Usuario:</label>
-                        </td>
-                        <td>
-                            <select ng-model="vm.model.blogObjeto.autorComentario">
-                                <option ng-repeat="bt in vm.model.arryUsers track by $index" ng-value="bt.name">{{bt.name}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <div ng-if="vm.model.blogObjeto.flgAlta" ng-init="vm.model.blogObjeto.flgAlta=true">
-                                <button ng-click="vm.agregarComentario()">Agregar nuevo comentario</button>
-                            </div>
-                            
-                            <div ng-if="vm.model.blogObjeto.flgEdicion" ng-init="vm.model.blogObjeto.flgEdicion=true">
-                                <button ng-click="vm.actualizarComentario(vm.model.blogObjeto.idComentario)">Guardar comentario</button>
-                                <button ng-click="vm.cancelarOperacion()">Cancelar edición</button>
-                            </div>
+                <div class="form-group">
+                    <label class="control-label">Nombre del producto dirigido:</label>
+                    <select class="form-control" ng-options="operator.id as operator.name for operator in vm.model.arryNombreProducto" ng-model="vm.model.blogObjeto.nombreProducto" />
+                </div>
+                
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="vm.model.blogObjeto.flgPrioritario"> Prioritario</label>
+                </div>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <!-- Aqui guardo los campos hidden. -->
-                        <input type="hidden" ng-model="vm.model.blogObjeto.flgAlta">
-                        <input type="hidden" ng-model="vm.model.blogObjeto.flgEdicion">
-                        <input type="hidden" ng-model="vm.model.blogObjeto.idComentario">
-                    </tr>
-                </tbody>
-            </table>
+                <div class="form-group">
+                    <div ng-if="vm.model.blogObjeto.flgAlta" ng-init="vm.model.blogObjeto.flgAlta=true">
+                        <button ng-click="vm.agregarComentario()" class="btn btn-primary">Agregar nuevo comentario</button>
+                    </div>
+                    
+                    <div ng-if="vm.model.blogObjeto.flgEdicion" ng-init="vm.model.blogObjeto.flgEdicion=true">
+                        <button ng-click="vm.actualizarComentario(vm.model.blogObjeto.idComentario)" class="btn btn-default">Guardar comentario</button>
+                        <button ng-click="vm.cancelarOperacion()" class="btn btn-default">Cancelar edición</button>
+                    </div>
+                </div>
+
+            </div>
 
             <br/>
 
             <!-- Lista de blogs actuivos -->
             <h2>Lista de blogs activos.</h2>
-            <table style="border: 1px solid; vertical-align: middle; text-align: center; width: 100%;">
-                <thead style="font-weight: 800; border: 1px solid;">
+            <table class="table table-striped" style="vertical-align: middle; text-align: center; width: 100%;">
+                <thead>
                     <tr>
                         <th>Id:</th>
                         <th>Comentario:</th>
@@ -112,22 +86,25 @@
                         <th colspan="2">Operaciones:</th>
                     </tr>
                 </thead>
-                <!-- | orderBy: ['-Prioritario'] -->
-                <tbody style="font-weight: normal; border: 1px solid;">
-                    <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] track by item.idComentario" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '800'} :''">
+                <tbody>
+                    <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] track by item.idComentario" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
                         <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
                         <td><span ng-bind="item.comentarioTxt"></span></td>
                         <td><span ng-bind="item.tipoComentario"></span></td>
                         <td><span ng-bind="item.nombreProducto"></span></td>
                         <td><span ng-bind="item.autorComentario"></span></td>
                         <td><span ng-bind="item.flgPrioritario | inputboolToText"></span></td>
-                        <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm'"></span></td>
-                        <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm'"></span></td>
-                        <td><button ng-click="vm.mostrarComentario(item.idComentario)">Editar comentario</button></td>
-                        <td><button ng-click="vm.eliminarComentario(item.idComentario)">Eliminar comentario</button></td>
+                        <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+                        <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+                        <td><button ng-click="vm.mostrarComentario(item.idComentario)" class="btn btn-default">Editar comentario</button></td>
+                        <td><button ng-click="vm.eliminarComentario(item.idComentario)" class="btn btn-default">Eliminar comentario</button></td>
                     </tr>
                 </tbody>
-                <!-- -->
+                <tfoot>
+                    <tr>
+                        <td colspan="10">Total de registros: <strong><span>{{vm.model.totalRows}}</span></strong></td>
+                    </tr>
+                </tfoot>
             </table>            
             
         </div>
@@ -139,8 +116,8 @@
 
             <!-- Lista de blogs eliminados -->
             <h2>Lista de blogs eliminados.</h2>
-            <table style="border: 1px solid; vertical-align: middle; text-align: center; width: 100%;">
-                <thead style="font-weight: 800; border: 1px solid;">
+            <table class="table" style="vertical-align: middle; text-align: center; width: 100%;">
+                <thead>
                     <tr>
                         <th>Id:</th>
                         <th>Comentario:</th>
@@ -153,7 +130,7 @@
                         <th>Operaciones:</th>
                     </tr>
                 </thead>
-                <tbody style="font-weight: normal; border: 1px solid;">
+                <tbody>
                     <tr ng-repeat="item in vm.model.eliminadoBlog track by item.idComentario">
                         <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
                         <td><span ng-bind="item.comentarioTxt"></span></td>
@@ -161,9 +138,9 @@
                         <td><span ng-bind="item.nombreProducto"></span></td>
                         <td><span ng-bind="item.autorComentario"></span></td>
                         <td><span ng-bind="item.flgPrioritario | inputboolToText"></span></td>
-                        <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm'"></span></td>
-                        <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm'"></span></td>
-                        <td><button ng-click="vm.restaurarComentario(item.idComentario)">Restaurar comentario</button></td>
+                        <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+                        <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+                        <td><button ng-click="vm.restaurarComentario(item.idComentario)" class="btn btn-default">Restaurar comentario</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -172,6 +149,9 @@
 	
     <!-- External Scripts -->
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    
 
     <!-- Internal Scripts -->
     <script src="index.module.js"></script>
@@ -179,7 +159,7 @@
     <script src="index.Identifier.filter.js"></script>
     <script src="index.service.js"></script>
     <script src="index.controller.js"></script>
-</body>
+</body c>
 <!--
 
 

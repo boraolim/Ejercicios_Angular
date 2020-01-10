@@ -11,6 +11,7 @@
         // Módelo del cliente.
         vm.model = {
             lastId : 0,
+            totalRows : 0,
             nuevoBlog : [],
             blogObjeto : {       
                 idComentario : 0,
@@ -52,6 +53,7 @@
         function initialize() {
             vm.model.lastId = 0;
             vm.model.nuevoBlog = dataService.blogNuevo;
+            vm.model.totalRows = 0;
 
             vm.model.blogObjeto.idComentario = 0;
             vm.model.blogObjeto.comentarioTxt = "";
@@ -94,6 +96,7 @@
             if (dataService.blogNuevo.length < 20)
             {
                 dataService.blogNuevo.push(objComentario);
+                vm.model.totalRows = dataService.blogNuevo.length;
             }
             else{
                 window.alert('Has superado el máximo de 20 comentarios');
@@ -120,6 +123,8 @@
 
             // Lo inserto a los blogs eliminados.
             dataService.blogEliminado.push(_obj);
+
+            vm.model.totalRows = dataService.blogNuevo.length;
 
             // Llamar el servicio como filtro $filter.
             window.alert("Has eliminado el mensaje: " + $filter("inputIdToText")(_obj.idComentario));
@@ -149,10 +154,10 @@
 
         // Actualizar comentario.
         function actualizarComentario(id) {
-            // Obtengo de la lista de los blogs activos el blog con el Id seleccionado.
+            // Obtengo el indice de la lista de los blogs activos el blog con el Id seleccionado.
             var objIndex = dataService.blogNuevo.findIndex(obj => obj.idComentario === id);
 
-            // Actualizo los atributos del blog activo.
+            // Actualizo los atributos del blog activo por el indice.
             dataService.blogNuevo[objIndex].comentarioTxt = vm.model.blogObjeto.comentarioTxt;
             dataService.blogNuevo[objIndex].tipoComentario = vm.model.blogObjeto.tipoComentario;
             dataService.blogNuevo[objIndex].nombreProducto = vm.model.blogObjeto.nombreProducto;
@@ -197,14 +202,20 @@
         
         // Reataurar comentario.
         function restaurarComentario(id) {
-            var objIndex = dataService.blogEliminadoo.findIndex(obj => obj.idComentario === id);
+            // Obtengo el indice de la lista de los blogs eliminados el blog con el Id seleccionado.
+            var objIndex = dataService.blogEliminado.findIndex(obj => obj.idComentario === id);
 
-            // Leo el objeto de la lista por el indice.
+            // Actualizo los atributos del blog activo por el indice.
             dataService.blogEliminado[objIndex].FechaActualizacion = new Date();
             dataService.blogEliminado[objIndex].FlgEliminado = false;
 
+            // Tomo el objeto modificado para asignarselo a una variable.
             var _obj = dataService.blogEliminado[objIndex];
+        
+            // Elimino el objeto seleccionado de la lista de blogs eliminados sobre el indice.
             dataService.blogEliminado.splice(objIndex, 1);
+    
+            // Lo inserto a los blogs nuevos.
             dataService.blogNuevo.push(_obj);
         }
     }
