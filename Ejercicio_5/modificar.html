@@ -1,0 +1,42 @@
+<!-- Captura de comentarios. -->
+<div id="dvLogin" class="form">
+    <p>Captura de informaci&oacute;n:</p>
+    
+    <div class="form-group">
+      <label class="control-label">Comentario:</label>
+      <textarea rows="4" cols="50" class="form-control form-control-sm" ng-model="vm.model.blogObjeto.comentarioTxt"></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label">Tipo de comentario:</label>
+        <label class="form-check-label">
+            <input type="radio" name="Privacity" value="Publico" class="form-check-input" ng-model="vm.model.blogObjeto.tipoComentario"> Público
+        </label>
+        <label class="form-check-label">
+            <input type="radio" name="Privacity" value="Privado" class="form-check-input" ng-model="vm.model.blogObjeto.tipoComentario"> Privado
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Nombre del producto dirigido:</label>
+        <select class="form-control" ng-options="operator.name as operator.name for operator in vm.model.arryNombreProducto" ng-model="vm.model.blogObjeto.nombreProducto"></select>
+    </div>
+    
+    <div class="checkbox">
+        <label><input type="checkbox" ng-model="vm.model.blogObjeto.flgPrioritario"> Prioritario</label>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Nombre del Usuario:</label>
+        <select class="form-control" ng-options="operator2.name as operator2.name for operator2 in vm.model.arryUsers" ng-model="vm.model.blogObjeto.autorComentario"></select>
+    </div>
+
+    <div class="form-group">       
+        <div ng-if="vm.model.blogObjeto.flgEdicion">
+            <button ng-click="vm.actualizarComentario(vm.model.blogObjeto.idComentario)" class="btn btn-default">Guardar comentario</button>
+            <button ng-click="vm.cancelarOperacion()" class="btn btn-default">Cancelar edición</button>
+        </div>
+    </div>
+
+</div>
+<br/>

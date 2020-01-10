@@ -1,0 +1,63 @@
+<head>
+    <title>Mi aplicacion en Angular</title>
+    <link rel="stylesheet" type="tetx/css" href="node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="app/css/styles.css">
+</head>
+<body class="container body-content">
+
+    <h1>Blogs activos.</h1>
+
+    <!-- Aplicación de Anguylar. -->
+    <div ng-app="indexModule">
+
+        <!-- Lista de blogs actuivos -->
+        <h2>Lista de blogs activos.</h2>
+        <table class="table table-striped" style="vertical-align: middle; text-align: center; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Id:</th>
+                        <th>Comentario:</th>
+                        <th>Tipo de comentario:</th>
+                        <th>Nombre del producto:</th>
+                        <th>Autor:</th>
+                        <th>Prioritario:</th>
+                        <th>Fecha de alta:</th>
+                        <th>Fecha de actualizacion:</th>
+                        <th colspan="2">Operaciones:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] track by $index" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
+                        <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
+                        <td><span ng-bind="item.comentarioTxt"></span></td>
+                        <td><span ng-bind="item.tipoComentario"></span></td>
+                        <td><span ng-bind="item.nombreProducto"></span></td>
+                        <td><span ng-bind="item.autorComentario"></span></td>
+                        <td><span ng-bind="item.flgPrioritario | inputboolToText"></span></td>
+                        <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+                        <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+                        <td><button ng-click="vm.mostrarComentario(item.idComentario)" class="btn btn-default">Editar comentario</button></td>
+                        <td><button ng-click="vm.eliminarComentario(item.idComentario)" class="btn btn-default">Eliminar comentario</button></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="10">Total de registros: <strong><span>{{vm.model.totalRows}}</span></strong></td>
+                    </tr>
+                </tfoot>
+            </table>            
+            
+            <a href="#!/">Principal</a><br/>
+
+    </div>
+	
+    <!-- External Scripts -->
+    <script src="node_modules/angular/angular.js"></script>   
+
+    <!-- Internal Scripts -->
+    <script src="index.module.js"></script>
+    <script src="index.boolean.filter.js"></script>
+    <script src="index.Identifier.filter.js"></script>
+    <script src="index.service.js"></script>
+    <script src="index.controller.js"></script>
+</body>
