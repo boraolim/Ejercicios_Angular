@@ -1,0 +1,52 @@
+<!-- Lista de blogs activos registrados.-->
+<div>
+  <!-- Area de navegación. -->
+  <div>
+    <div ng-if="vm.isActiveUser()" ng-init="vm.isActiveUser()===true">
+      <!-- Si el usuario está activo, muestro la tabla. -->
+      <h2>Lista de blogs activos.</h2>
+      <button ng-click="vm.redirectToAdd()">Agregar nuevo blog.</button>
+      <button>Ver detalle del blog.</button>
+
+      <!-- Lista de blogs activos -->
+      <table class="table table-striped" style="vertical-align: middle; text-align: center; width: 100%;">
+        <thead>
+          <tr>
+            <th>Id:</th>
+            <th>Comentario:</th>
+            <th>Tipo de comentario:</th>
+            <th>Nombre del producto:</th>
+            <th>Autor:</th>
+            <th>Prioritario:</th>
+            <th>Fecha de alta:</th>
+            <th>Fecha de actualizacion:</th>
+            <th colspan="2">Operaciones:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] track by (item.idComentario)" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
+            <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
+            <td><span ng-bind="item.comentarioTxt"></span></td>
+            <td><span ng-bind="item.tipoComentario"></span></td>
+            <td><span ng-bind="item.nombreProducto"></span></td>
+            <td><span ng-bind="item.autorComentario"></span></td>
+            <td><span ng-bind="item.flgPrioritario | inputboolToText"></span></td>
+            <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+            <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+            <td><button class="btn btn-default">Editar comentario</button></td>
+            <td><button ng-click="vm.eliminarComentario(item.idComentario)" class="btn btn-default">Eliminar comentario</button></td>
+        </tr>          
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table> <!-- ./ table-->
+    </div>
+
+    <div ng-if="!vm.isActiveUser()">
+      <p>Pulse el botón "Inicia" para iniciar sesi&oacute;n.</p>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</div>
