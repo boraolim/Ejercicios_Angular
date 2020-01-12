@@ -20,11 +20,16 @@
                                   controller: "indexBlogController",
                                   controllerAs: "vm"
                                 })
-                      .when("/blogEdit", {
+                      .when("/blogDetail/:blogId", {
                                   templateUrl: "views/page4.html",
                                   controller: "indexBlogController",
                                   controllerAs: "vm"
                                 })                                                                 
+                      .when("/blogEdit/:blogId", {
+                                  templateUrl: "views/page5.html",
+                                  controller: "indexBlogController",
+                                  controllerAs: "vm"
+                                })                                                                                                 
                       .otherwise({
                                    redirectTo: '/'
                                  });                                 

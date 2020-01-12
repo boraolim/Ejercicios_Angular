@@ -58,7 +58,7 @@
     
     // Redireccionar a la pantalla principal.
     function redirectToMain() {
-      $location.path("/");  // Redirecciono al modelo.
+      $location.path("/").search({});  // Redirecciono al modelo.
     }
 
     // Reataurar comentario.

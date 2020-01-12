@@ -4,13 +4,14 @@
   // Definición de los controladores.
   angular.module("indexModule").controller("indexBlogController", indexBlogController);
 
-  function indexBlogController($location, $filter, userService, blogService) {
+  function indexBlogController($location, $filter, $routeParams, userService, blogService) {
     var vm = this;
 
     // Módelo del cliente.
     vm.model = {
       lastId : 0,
       userName : "",
+      idParam : 0,
       flgIsLogged : false,
       nuevoBlog : [],
       blogObjeto : {
@@ -26,7 +27,8 @@
         flgEdicion : false,
         flgEliminado : false
       },
-      arryNombreProducto : []       
+      arryNombreProducto : [],
+      detailComentario : null
     };
 
     // Funciones internas.
@@ -38,9 +40,8 @@
     vm.redirectToAdd = redirectToAdd;
     vm.agregarComentario = agregarComentario;
     vm.eliminarComentario = eliminarComentario;
-    // vm.mostrarComentario = mostrarComentario;
-    // vm.actualizarComentario = actualizarComentario;
-    // vm.cancelarOperacion = cancelarOperacion;
+    vm.mostrarComentario = mostrarComentario;
+    vm.actualizarComentario = actualizarComentario;
 
     // Constructor.
     initialize();
@@ -68,6 +69,12 @@
       vm.model.blogObjeto.flgAlta = true;
       vm.model.blogObjeto.flgEdicion = false;
       vm.model.blogObjeto.flgEliminado = false;
+      
+      // Aquí verifico si existe un parametro llamado 'blogId'.
+      // Si no existe, paso de largo. En caso contrario, obtengo el blog existente.
+      if (typeof $routeParams.blogId !== 'undefined' & vm.model.flgIsLogged) {
+        mostrarComentario(parseInt($routeParams.blogId));
+      }
     }
 
     // Función que indica si el usuario está activo.
@@ -96,12 +103,12 @@
     
     // Redireccionar a la pantalla principal.
     function redirectToMain() {
-      $location.path("/");  // Redirecciono al modelo.
+      $location.path("/").search({});  // Redirecciono al modelo y limpio parámetros.
     }
 
     // Redireccionar a la pantalla de captura.
     function redirectToAdd() {
-      $location.path("/blogAdd");  // Redirecciono al modelo.
+      $location.path("/blogAdd").search({});  // Redirecciono al modelo y limpio parámetros.
     }
 
     // Operaciones CRUD.
@@ -158,6 +165,7 @@
       // Lo inserto a los blogs eliminados.
       blogService.blogsEliminados.push(_obj);
 
+      // Total de blogs activos hasta ahora...
       vm.model.totalRows = blogService.blogsNuevos.length;
 
       // Llamar el servicio como filtro $filter.
@@ -165,6 +173,46 @@
 
       // Redirecciono a la pantalla principal.
       redirectToMain()
+    }
+
+    // Mostrar un comentario existente.
+    function mostrarComentario(id) {
+      // Obtengo de la lista de los blogs activos el blog con el Id seleccionado.
+      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id);
+
+      // Obtengo el objeto.
+      var obj = blogService.blogsNuevos[objIndex];
+      
+      // Leo los atributos del blog activo.
+      vm.model.blogObjeto.idComentario = obj.idComentario;
+      vm.model.blogObjeto.comentarioTxt = obj.comentarioTxt;
+      vm.model.blogObjeto.tipoComentario = obj.tipoComentario;
+      vm.model.blogObjeto.flgPrioritario = obj.flgPrioritario;
+      vm.model.blogObjeto.flgAlta = false; 
+      vm.model.blogObjeto.flgEdicion = true;
+      vm.model.blogObjeto.flgEliminado = false;
+
+      // Carga de los combos.
+      vm.model.blogObjeto.nombreProducto = obj.nombreProducto;
+      vm.model.blogObjeto.autorComentario = obj.autorComentario;
+    }
+
+    // Actualizar comentario.
+    function actualizarComentario(id) {
+      // Obtengo el indice de la lista de los blogs activos el blog con el Id seleccionado.
+      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id);
+
+      // Actualizo los atributos del blog activo por el indice.
+      blogService.blogsNuevos[objIndex].comentarioTxt = vm.model.blogObjeto.comentarioTxt;
+      blogService.blogsNuevos[objIndex].tipoComentario = vm.model.blogObjeto.tipoComentario;
+      blogService.blogsNuevos[objIndex].nombreProducto = vm.model.blogObjeto.nombreProducto;
+      blogService.blogsNuevos[objIndex].autorComentario = vm.model.blogObjeto.autorComentario;
+      blogService.blogsNuevos[objIndex].flgPrioritario = vm.model.blogObjeto.flgPrioritario;
+      blogService.blogsNuevos[objIndex].fechaActualizacion = new Date();
+      blogService.blogsNuevos[objIndex].flgEdicion = false;
+      
+      // Redirecciono a la pantalla principal.
+      redirectToMain();
     }
   }
 })(); // Fin de la sección de controladores.

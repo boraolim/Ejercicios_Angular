@@ -6,7 +6,6 @@
       <!-- Si el usuario está activo, muestro la tabla. -->
       <h2>Lista de blogs activos.</h2>
       <button ng-click="vm.redirectToAdd()">Agregar nuevo blog.</button>
-      <button>Ver detalle del blog.</button>
 
       <!-- Lista de blogs activos -->
       <table class="table table-striped" style="vertical-align: middle; text-align: center; width: 100%;">
@@ -20,7 +19,7 @@
             <th>Prioritario:</th>
             <th>Fecha de alta:</th>
             <th>Fecha de actualizacion:</th>
-            <th colspan="2">Operaciones:</th>
+            <th colspan="3">Operaciones:</th>
           </tr>
         </thead>
         <tbody>
@@ -33,8 +32,22 @@
             <td><span ng-bind="item.flgPrioritario | inputboolToText"></span></td>
             <td><span ng-bind="item.fechaAlta | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
             <td><span ng-bind="item.fechaActualizacion | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
-            <td><button class="btn btn-default">Editar comentario</button></td>
-            <td><button ng-click="vm.eliminarComentario(item.idComentario)" class="btn btn-default">Eliminar comentario</button></td>
+            <td>
+              <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
+                <a ng-href="#!/blogDetail/{{item.idComentario}}?idComentario={{item.idComentario}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>Detalle</a>
+              </div>
+            </td>
+
+            <td>
+              <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
+                <a ng-href="#!/blogEdit/{{item.idComentario}}?idComentario={{item.idComentario}}"><i class="fa fa-edit" aria-hidden="true"></i>Editar</a>
+              </div>
+            </td>
+            <td>
+              <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
+                <a href="#" ng-click="vm.eliminarComentario(item.idComentario)"><i class="fa fa-eraser" aria-hidden="true"></i>Eliminar</a>
+              </div>
+            </td>
         </tr>          
         </tbody>
         <tfoot>
@@ -45,8 +58,5 @@
     <div ng-if="!vm.isActiveUser()">
       <p>Pulse el botón "Inicia" para iniciar sesi&oacute;n.</p>
     </div>
-  </div>
-  <div>
-
   </div>
 </div>

@@ -16,8 +16,14 @@
     // Flag que indica el status de la cuenta de usuario, si entró al sistema o no.
     service.flgIsLogged = false;
 
-    // Atributo que indica el nombre del usuario.
+    // Atributo que indica el nombre del usuario activo.
     service.userName = "";
+
+    // Lista de cuentas de usuarios.
+    service.arryUsuarios = [{ id: 0, name: "Administrador" }, 
+                            { id: 1, name: "Usuario 1" }, 
+                            { id: 2, name: "Usuario 2" }, 
+                            { id: 3, name: "Invitado" }];
 
     // Funciones internas.
     service.setIsLogged = setIsLogged;

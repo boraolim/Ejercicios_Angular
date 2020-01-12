@@ -7,7 +7,8 @@
     // Modelo del cliente.
     vm.model = {
       isLogged : false,
-      userName : ""
+      userName : "",
+      arrayUsers : []
     };
 
     // Funciones internas.
@@ -25,12 +26,13 @@
       // Aquí inicializamos los atributos y elementos del modelo.
       vm.model.isLogged = userService.flgIsLogged;
       vm.model.userName = userService.userName;
+      vm.model.arrayUsers = userService.arryUsuarios;
     }
 
     // Ingresar usuario.
     function loginUser() {
       vm.model.isLogged = userService.setIsLogged(true);
-      vm.model.userName = userService.setUserName("Administrador");
+      vm.model.userName = userService.setUserName(vm.model.userName);
 
       // Redirecciono al modelo.
       $location.path("/");
