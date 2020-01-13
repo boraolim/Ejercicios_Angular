@@ -9,3 +9,6 @@ Instalar por npm.
 * npm i gulp-cli --global --force 
 * npm i browser-sync --global --save-dev
 * npm i gulp-sass --global --save-dev
+* npm i gulp-concat --global --save-dev
+* npm i gulp-ng-annotate --global --save-dev
+* npm i angular-ui-bootstrap --save-dev

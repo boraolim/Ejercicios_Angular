@@ -1,0 +1,104 @@
+$font-stack:             Arial, Helvetica, sans-serif;
+$primary-color:          #333333;
+$font-size:              1.05em;
+$texto-justificado:      justify;
+
+$vertical-align:         middle;
+$text-align:             center;
+
+$bgDefault:              #e74c3c;
+$bgHighlight:            #c0392b;
+$colDefault:             #ecf0f1;
+$colHighlight:           #ffbbbc;
+$dropDown:               false;
+
+body {
+  font-family:           $font-stack;
+  font-size:             $font-size !important;
+  color:                 $primary-color !important;
+  padding-top:           65px !important;
+  padding-bottom:        20px !important;
+}
+
+.unselectable {
+  -webkit-user-select:   none;
+  -webkit-touch-callout: none;
+  -moz-user-select:      none;
+  -ms-user-select:       none;
+  user-select:           none;
+}
+
+table, thead, tr, tbody, th, td {
+  text-align: $text-align;
+  vertical-align: $vertical-align;
+}
+
+.table td {
+  text-align: $text-align;
+  vertical-align: $vertical-align;
+}
+
+/* Tomado del sitio: https://work.smarchal.com/twbscolor/ */
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li {
+            > a {
+              color: $colDefault;
+              &:hover,  &:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight; }}
+            &.divider {
+              background-color: $bgHighlight;}}}}}
+    @if $dropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}

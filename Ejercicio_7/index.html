@@ -1,0 +1,99 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Mi aplicacion en Angular</title>
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="app/css/styles.css">
+</head>
+<body class="unselectable container">
+
+  <!-- Angular App. -->
+  <div ng-app="indexModule">
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="indexLoginController as vm">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Aplicaci&oacute;n de Angular</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          
+          <ul class="nav navbar-nav" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operaciones CRUD <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#!/blogActivo">Blog activo</a></li>
+              <li><a href="#!/blogEliminado">Blog eliminados</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#!/blogAdd">Agregar nuevo blog</a></li>
+            </ul>
+            </li>
+          </ul>
+
+          <div class="navbar-form navbar-left" ng-if="!vm.model.isLogged" ng-init="vm.model.isLogged===false">
+            <div class="form-group">
+            <select class="form-control" placeholder="Search" ng-options="operator2.name as operator2.name for operator2 in vm.model.arrayUsers" ng-model="vm.model.userName"></select>
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="vm.loginUser()">Iniciar sesi&oacute;n</button>
+          </div>
+
+          <ul class="nav navbar-nav navbar-right" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido <strong><span ng-bind="::vm.model.userName"></span></strong> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" ng-click="vm.logoutUser()">Cerrar sesi&oacute;n</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav><!-- Static navbar -->
+
+    <section class="container body-content">
+      <div ng-view></div><!-- /.ng-view -->
+      <hr><footer>Esta es una aplicaci&oacute;n de ejemplo.</footer>
+    </section><!-- /.container -->    
+  </div><!-- /.ng-app. -->
+
+  <!-- External Scripts -->
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/lodash/lodash.js"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+  <!-- Internal Scripts -->
+  <!-- In the order of scripting, put each of the javascript scripts so that Angular works correctly. -->
+  <!-- Angular Modules. -->
+  <script src="default-src/index.module.js"></script>
+
+  <!-- Angular filters. -->
+  <script src="default-src/index.boolean.filter.js"></script>
+  <script src="default-src/index.Identifier.filter.js"></script>
+
+  <!-- Angular Services. -->
+  <script src="default-src/index.login_Service.js"></script>
+  <script src="default-src/index.blog_Service.js"></script>
+
+  <!-- Angular Controllers. -->
+  <script src="default-src/index.login_Controller.js"></script>
+  <script src="default-src/index.blogActivo_controller.js"></script>
+  <script src="default-src/index.blogEliminado_controller.js"></script>
+</body>
