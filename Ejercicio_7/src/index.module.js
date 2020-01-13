@@ -4,11 +4,11 @@
 // Fecha: 2020-01-11.
 // Comentarios: N/A
 
-
 (function() {
 
-  angular.module('indexModule', ["ngRoute"]).config(configApp).run(runApp);
-
+  angular.module('indexModule', ["ngRoute", "ui.bootstrap"]).config(configApp).run(runApp);
+  
+  /*@ngInject*/
   function configApp($routeProvider) {
 
     // Configuracion de nuestro routing.
@@ -42,8 +42,10 @@
                              });
   }
 
+  /*@ngInject*/
   function runApp() {
-    // Direcciones de la API.
+    // Direcciones de la API Prueba..
+    // Prueba....... FINALIZADA.
   }
 
 })();

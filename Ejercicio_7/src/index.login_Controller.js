@@ -5,8 +5,10 @@
 // Comentarios: N/A
 
 (function() {
+
   angular.module("indexModule").controller("indexLoginController", indexLoginController);
 
+  /*@ngInject*/
   function indexLoginController($location, userService) {
     var vm = this;
 
@@ -52,7 +54,5 @@
       // Redirecciono al modelo.
       $location.path("/");
     }
-
   }
-
 })();

@@ -9,6 +9,7 @@
   // Definición del constructor del objeto tipo 'Factory'.
   angular.module("indexModule").factory("userService", userService);
 
+  /*@ngInject*/
   // Función 'userService'.
   function userService() {       
     var service = this;

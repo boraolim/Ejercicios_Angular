@@ -9,6 +9,7 @@
   // Definición de los controladores.
   angular.module("indexModule").controller("indexBlogEliminadoController", indexBlogEliminadoController);
 
+  /*@ngInject*/
   function indexBlogEliminadoController($location, userService, blogService) {
     var vm = this;
 

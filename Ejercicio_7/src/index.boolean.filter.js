@@ -8,6 +8,7 @@
 
   angular.module("indexModule").filter("inputboolToText", inputboolToText);
 
+  /*@ngInject*/
   function inputboolToText() {
         
     return function(input) {

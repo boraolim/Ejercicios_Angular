@@ -9,6 +9,7 @@
   // Definición del constructor del objeto tipo 'Factory'.
   angular.module("indexModule").factory("blogService", blogService);
 
+  /*@ngInject*/
   // Función 'blogService'.
   function blogService() {
     var service = this;
@@ -48,4 +49,4 @@
       return service.tipoProductos;
     }
   }
-})(); // Fin del servicio.
+})(); // Fin del servicio.....

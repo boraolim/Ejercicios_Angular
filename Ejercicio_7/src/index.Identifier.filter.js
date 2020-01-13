@@ -8,6 +8,7 @@
 
   angular.module("indexModule").filter("inputIdToText", inputIdToText);
 
+  /*@ngInject*/
   function inputIdToText() {
 
     return function(input) {

@@ -11,4 +11,6 @@ Instalar por npm.
 * npm i gulp-sass --global --save-dev
 * npm i gulp-concat --global --save-dev
 * npm i gulp-ng-annotate --global --save-dev
+* npm i gulp-uglify --global --save-dev
+* npm i gulp-uglify-es --global --save-dev
 * npm i angular-ui-bootstrap --save-dev
