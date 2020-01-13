@@ -10,7 +10,7 @@ $bgDefault:              #e74c3c;
 $bgHighlight:            #c0392b;
 $colDefault:             #ecf0f1;
 $colHighlight:           #ffbbbc;
-$dropDown:               false;
+$dropDown:               true;
 
 body {
   font-family:           $font-stack;
@@ -39,6 +39,7 @@ table, thead, tr, tbody, th, td {
 }
 
 /* Tomado del sitio: https://work.smarchal.com/twbscolor/. Probado... */
+/*
 .navbar-default {
   background-color: $bgDefault;
   border-color: $bgHighlight;
@@ -101,4 +102,12 @@ table, thead, tr, tbody, th, td {
       > a, > a:hover, > a:focus {
         color: $colHighlight;
         background-color: $bgHighlight; }}}
+}
+*/
+
+
+@media (min-width: 768px) {
+  .navbar {
+      border-radius: 0;
+  }
 }

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Mi aplicacion en Angular</title>
   <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
   <link rel="stylesheet" href="app/css/styles.css">
 </head>
 <body class="unselectable container">
@@ -17,52 +17,54 @@
   <div ng-app="indexModule" ng-strict-di>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="indexLoginController as vm">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Aplicaci&oacute;n de Angular</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          
-          <ul class="nav navbar-nav" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
-            <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operaciones CRUD <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#!/blogActivo">Blog activo</a></li>
-              <li><a href="#!/blogEliminado">Blog eliminados</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#!/blogAdd">Agregar nuevo blog</a></li>
-            </ul>
-            </li>
-          </ul>
-
-          <div class="navbar-form navbar-left" ng-if="!vm.model.isLogged" ng-init="vm.model.isLogged===false">
-            <div class="form-group">
-            <select class="form-control" placeholder="Search" ng-options="operator2.name as operator2.name for operator2 in vm.model.arrayUsers" ng-model="vm.model.userName"></select>
-            </div>
-            <button type="submit" class="btn btn-default" ng-click="vm.loginUser()">Iniciar sesi&oacute;n</button>
+    <div ng-controller="indexDropdownController as vm">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="indexLoginController as vm">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-init="vm.isNavCollapsed=true" ng-click="vm.isNavCollapsed=!vm.isNavCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Aplicaci&oacute;n de Angular</a>
           </div>
-
-          <ul class="nav navbar-nav navbar-right" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido <strong><span ng-bind="::vm.model.userName"></span></strong> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" ng-click="vm.logoutUser()">Cerrar sesi&oacute;n</a></li>
+  
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="navbar-collapse collapse in" uib-collapse="vm.isNavCollapsed" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
+              <li class="dropdown" uib-dropdown>
+              <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operaciones CRUD <span class="caret"></span></a>
+              <ul class="dropdown-menu" uib-dropdown-menu>
+                <li><a href="#!/blogActivo">Blog activo</a></li>
+                <li><a href="#!/blogEliminado">Blog eliminados</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#!/blogAdd">Agregar nuevo blog</a></li>
               </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav><!-- Static navbar -->
+              </li>
+            </ul>
+  
+            <div class="navbar-form navbar-left" ng-if="!vm.model.isLogged" ng-init="vm.model.isLogged===false">
+              <div class="form-group">
+                <select class="form-control" placeholder="Search" ng-options="operator2.name as operator2.name for operator2 in vm.model.arrayUsers" ng-model="vm.model.userName"></select>
+              </div>
+              <button type="submit" class="btn btn-default" ng-click="vm.loginUser()">Iniciar sesi&oacute;n</button>
+            </div>
+  
+            <ul class="nav navbar-nav navbar-right" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
+              <li class="dropdown" uib-dropdown>
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido <strong><span ng-bind="::vm.model.userName"></span></strong> <span class="caret"></span></a>
+                <ul class="dropdown-menu" uib-dropdown-menu>
+                  <li><a href="#" ng-click="vm.logoutUser()">Cerrar sesi&oacute;n</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav><!-- Static navbar -->
+    </div>
+    
 
     <section class="container body-content">
       <div ng-view></div><!-- /.ng-view -->
@@ -75,7 +77,7 @@
   <script src="node_modules/angular-route/angular-route.js"></script>
   <script src="node_modules/angular-animate/angular-animate.js"></script>
   <script src="node_modules/angular-touch/angular-touch.js"></script>
-  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
   <script src="node_modules/lodash/lodash.js"></script>
 
   <!-- Internal Scripts -->

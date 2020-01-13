@@ -21,44 +21,71 @@ table, thead, tr, tbody, th, td {
   vertical-align: middle; }
 
 /* Tomado del sitio: https://work.smarchal.com/twbscolor/. Probado... */
+/*
 .navbar-default {
-  background-color: #e74c3c;
-  border-color: #c0392b; }
-  .navbar-default .navbar-brand {
-    color: #ecf0f1; }
-    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-      color: #ffbbbc; }
-  .navbar-default .navbar-text {
-    color: #ecf0f1; }
-  .navbar-default .navbar-nav > li > a {
-    color: #ecf0f1; }
-    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-      color: #ffbbbc; }
-  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #ffbbbc;
-    background-color: #c0392b; }
-  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #ffbbbc;
-    background-color: #c0392b; }
-  .navbar-default .navbar-toggle {
-    border-color: #c0392b; }
-    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-      background-color: #c0392b; }
-    .navbar-default .navbar-toggle .icon-bar {
-      background-color: #ecf0f1; }
-  .navbar-default .navbar-collapse,
-  .navbar-default .navbar-form {
-    border-color: #ecf0f1; }
-  .navbar-default .navbar-link {
-    color: #ecf0f1; }
-    .navbar-default .navbar-link:hover {
-      color: #ffbbbc; }
-
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li {
+            > a {
+              color: $colDefault;
+              &:hover,  &:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight; }}
+            &.divider {
+              background-color: $bgHighlight;}}}}}
+    @if $dropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
 @media (max-width: 767px) {
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #ecf0f1; }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: #ffbbbc; }
-  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #ffbbbc;
-    background-color: #c0392b; } }
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+*/
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0; } }

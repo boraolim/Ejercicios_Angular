@@ -6,7 +6,7 @@
 
 (function() {
 
-  angular.module('indexModule', ["ngRoute", "ui.bootstrap"]).config(configApp).run(runApp);
+  angular.module("indexModule", ["ngRoute", "ngAnimate", "ui.bootstrap"]).config(configApp).run(runApp);
   
   /*@ngInject*/
   function configApp($routeProvider) {

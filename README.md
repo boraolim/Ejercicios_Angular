@@ -14,3 +14,4 @@ Instalar por npm.
 * npm i gulp-uglify --global --save-dev
 * npm i gulp-uglify-es --global --save-dev
 * npm i angular-ui-bootstrap --save-dev
+* npm i bootstrap@3 --global --save-dev

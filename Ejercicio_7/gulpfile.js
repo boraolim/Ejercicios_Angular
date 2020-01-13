@@ -36,7 +36,8 @@ function generateScripts() {
                      "src/index.Identifier.filter.js",
                      "src/index.login_Service.js",
                      "src/index.blog_Service.js",
-                     "src/index.login_Controller.js",
+                     "src/index.navBar_controller.js",
+                     "src/index.login_controller.js",
                      "src/index.blogActivo_controller.js",
                      "src/index.blogEliminado_controller.js"
                     ])
