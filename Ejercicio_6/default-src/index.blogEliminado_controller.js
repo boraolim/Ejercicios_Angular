@@ -1,4 +1,9 @@
-// Sección de controladores.
+// Archivo: index.blogEliminado_controller.js
+// Objetivo: Controlador de Angular llamado 'indexBlogEliminadoController' para la gestión de blogs eliminados.
+// Autor: Olimpo Bonilla Ramírez.
+// Fecha: 2020-01-12.
+// Comentarios: N/A
+
 (function(){
 
   // Definición de los controladores.
@@ -12,7 +17,7 @@
       lastId : 0,
       userName : "",
       flgIsLogged : false,
-      eliminadoBlog : []      
+      eliminadoBlog : []
     };
 
     // Funciones internas.
@@ -55,10 +60,10 @@
     // --------------------------------
     // Funciones de redireccionamiento.
     // --------------------------------
-    
+
     // Redireccionar a la pantalla principal.
     function redirectToMain() {
-      $location.path("/").search({});  // Redirecciono al modelo.
+      $location.path("/").search({});  // Redirecciono al modelo y limpio parámetros.
     }
 
     // Reataurar comentario.
@@ -73,7 +78,7 @@
 
       // Tomo el objeto modificado para asignarselo a una variable.
       var _obj = blogService.blogsEliminados[objIndex];
-  
+
       // Elimino el objeto seleccionado de la lista de blogs eliminados sobre el indice.
       blogService.blogsEliminados.splice(objIndex, 1);
 

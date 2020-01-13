@@ -6,7 +6,7 @@ var reload      = browserSync.reload;
 var sass        = require("gulp-sass");
 
 // Generamos las tareas.
-gulp.task("serve", function (cb) {
+gulp.task("serve_init", function (cb) {
     browserSync.init({
         port: 3005,
         server: {

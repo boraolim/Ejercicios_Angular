@@ -1,4 +1,9 @@
-// Sección de controladores.
+// Archivo: index.blogAcitvo_controller.js
+// Objetivo: Controlador de Angular llamado 'indexBlogController' para la gestión de blogs activos.
+// Autor: Olimpo Bonilla Ramírez.
+// Fecha: 2020-01-12.
+// Comentarios: N/A
+
 (function(){
 
   // Definición de los controladores.
@@ -69,7 +74,7 @@
       vm.model.blogObjeto.flgAlta = true;
       vm.model.blogObjeto.flgEdicion = false;
       vm.model.blogObjeto.flgEliminado = false;
-      
+
       // Aquí verifico si existe un parametro llamado 'blogId'.
       // Si no existe, paso de largo. En caso contrario, obtengo el blog existente.
       if (typeof $routeParams.blogId !== 'undefined' & vm.model.flgIsLogged) {
@@ -86,7 +91,7 @@
     function isUserName() {
       return userService.userName;
     }
-    
+
     // Función que devuelve los tipos de productos.
     function getTiposProductos() {
       return blogService.tipoProductos;
@@ -100,7 +105,7 @@
     // --------------------------------
     // Funciones de redireccionamiento.
     // --------------------------------
-    
+
     // Redireccionar a la pantalla principal.
     function redirectToMain() {
       $location.path("/").search({});  // Redirecciono al modelo y limpio parámetros.
@@ -111,7 +116,10 @@
       $location.path("/blogAdd").search({});  // Redirecciono al modelo y limpio parámetros.
     }
 
+    // -----------------
     // Operaciones CRUD.
+    // -----------------
+
     // Agregar un blog.
     function agregarComentario()
     {
@@ -182,13 +190,13 @@
 
       // Obtengo el objeto.
       var obj = blogService.blogsNuevos[objIndex];
-      
+
       // Leo los atributos del blog activo.
       vm.model.blogObjeto.idComentario = obj.idComentario;
       vm.model.blogObjeto.comentarioTxt = obj.comentarioTxt;
       vm.model.blogObjeto.tipoComentario = obj.tipoComentario;
       vm.model.blogObjeto.flgPrioritario = obj.flgPrioritario;
-      vm.model.blogObjeto.flgAlta = false; 
+      vm.model.blogObjeto.flgAlta = false;
       vm.model.blogObjeto.flgEdicion = true;
       vm.model.blogObjeto.flgEliminado = false;
 
@@ -210,7 +218,7 @@
       blogService.blogsNuevos[objIndex].flgPrioritario = vm.model.blogObjeto.flgPrioritario;
       blogService.blogsNuevos[objIndex].fechaActualizacion = new Date();
       blogService.blogsNuevos[objIndex].flgEdicion = false;
-      
+
       // Redirecciono a la pantalla principal.
       redirectToMain();
     }

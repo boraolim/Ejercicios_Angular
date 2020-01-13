@@ -1,7 +1,13 @@
-(function() {
-  angular.module("indexModule").controller("loginController", loginController);
+// Archivo: index.login_controller.js
+// Objetivo: Controlador de Angular llamado 'indexBlogController' para la gestión de cuentas de usuario.
+// Autor: Olimpo Bonilla Ramírez.
+// Fecha: 2020-01-12.
+// Comentarios: N/A
 
-  function loginController($location, userService) {
+(function() {
+  angular.module("indexModule").controller("indexLoginController", indexLoginController);
+
+  function indexLoginController($location, userService) {
     var vm = this;
 
     // Modelo del cliente.
@@ -14,7 +20,7 @@
     // Funciones internas.
     vm.loginUser = loginUser;
     vm.logoutUser = logoutUser;
- 
+
     // Constructor.
     initialize();
 
