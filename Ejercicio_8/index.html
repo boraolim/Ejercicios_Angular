@@ -1,0 +1,184 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Mi aplicacion en Angular</title>
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="app/css/styles.css">
+</head>
+<body class="unselectable container">
+
+  <!-- Angular App. -->
+  <div ng-app="indexModule">
+
+    <!-- Static navbar -->
+    <div ng-controller="indexDropdownController as vm">
+
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="indexLoginController as vm">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-init="vm.isNavCollapsed=true" ng-click="vm.isNavCollapsed=!vm.isNavCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">      
+              Aplicación de Angular
+            </a>
+          </div>
+  
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="navbar-collapse collapse in" uib-collapse="vm.isNavCollapsed" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
+              <li class="dropdown" uib-dropdown>
+              <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operaciones CRUD <span class="caret"></span></a>
+              <ul class="dropdown-menu" uib-dropdown-menu>
+                <li><a href="#!/blogActivo">Blog activo</a></li>
+                <li><a href="#!/blogEliminado">Blog eliminados</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#!/blogAdd">Agregar nuevo blog</a></li>
+              </ul>
+              </li>
+            </ul>
+  
+            <div class="navbar-form navbar-left" ng-if="!vm.model.isLogged" ng-init="vm.model.isLogged===false">
+              <div class="form-group">
+                <select class="form-control" placeholder="Search" ng-options="operator2.name as operator2.name for operator2 in vm.model.arrayUsers" ng-model="vm.model.userName"></select>
+              </div>
+              <button type="submit" class="btn btn-default" ng-click="vm.loginUser()">Iniciar sesi&oacute;n</button>
+            </div>
+  
+            <ul class="nav navbar-nav navbar-right" ng-if="vm.model.isLogged" ng-init="vm.model.isLogged===true">
+              <li class="dropdown" uib-dropdown>
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido <strong><span ng-bind="::vm.model.userName"></span></strong> <span class="caret"></span></a>
+                <ul class="dropdown-menu" uib-dropdown-menu>
+                  <li><a href="#" ng-click="vm.logoutUser()">Cerrar sesi&oacute;n</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav><!-- Static navbar -->
+    </div> <!-- /.controller -->
+    <!-- Sugerencia. Crear un evento. -->
+    
+
+    <section class="container body-content">
+      <div ng-view></div><!-- /.ng-view -->
+
+      <!-- Alerts. -->
+      <h1>Alerts.</h1>
+      <div ng-controller="indexBsAlertController as vm">
+        <script type="text/ng-template" id="alert.html">
+          <div ng-transclude></div>
+        </script>
+      
+        <products-details-directive title="Prueba de Directiva" onchangetitle="vm.theChangeTitle">
+        </products-details-directive>
+
+        <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">{{alert.msg}}</div>
+        <div uib-alert template-url="alert.html" style="background-color:#fa39c3;color:white">A happy alert!</div>
+        <button type="button" class='btn btn-default' ng-click="vm.addAlert()">Add Alert</button>
+      </div> <!-- ./indexBsAlertController -->
+
+
+      <h1>Dialog modal</h1>   
+      <div ng-controller="indexController as pc">
+        <div>
+          <button class="btn btn-info" ng-click="pc.open()" style="margin: 15px;">Open Modal</button>
+        </div>  
+      </div>
+      
+      <!-- Tabs. -->
+      <h1>Tabs.</h1>
+      <div ng-controller="indexBsTabController as vm">
+        <p>Select a tab by setting active binding to true:</p>
+        <p>
+          <button type="button" class="btn btn-default btn-sm" ng-click="active = 1">Select second tab</button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="active = 2">Select third tab</button>
+        </p>
+        <p>
+          <button type="button" class="btn btn-default btn-sm" ng-click="vm.tabs[1].disabled = ! vm.tabs[1].disabled">Enable / Disable third tab</button>
+        </p>
+        <hr />
+      
+        <uib-tabset active="active">
+          <uib-tab index="0" heading="Static title">Static content</uib-tab>
+          <uib-tab index="$index + 1" ng-repeat="tab in vm.tabs" heading="{{tab.title}}" disable="disabled">
+            {{tab.content}}
+          </uib-tab>
+          <uib-tab index="3" select="vm.alertMe()">
+            <uib-tab-heading>
+              <i class="glyphicon glyphicon-bell"></i> Alert!
+            </uib-tab-heading>
+            I've got an HTML heading, and a select callback. Pretty cool!
+          </uib-tab>
+        </uib-tabset>
+      
+        <hr />
+      
+        <uib-tabset active="activePill" vertical="true" type="pills">
+          <uib-tab index="0" heading="Vertical 1">Vertical content 1</uib-tab>
+          <uib-tab index="1" heading="Vertical 2">Vertical content 2</uib-tab>
+        </uib-tabset>
+      
+        <hr />
+      
+        <uib-tabset active="activeJustified" justified="true">
+          <uib-tab index="0" heading="Justified">Justified content</uib-tab>
+          <uib-tab index="1" heading="SJ">Short Labeled Justified content</uib-tab>
+          <uib-tab index="2" heading="Long Justified">Long Labeled Justified content</uib-tab>
+        </uib-tabset>
+      
+        <hr />
+      
+        Tabbed pills with CSS classes
+        <uib-tabset type="pills">
+          <uib-tab heading="Default Size">Tab 1 content</uib-tab>
+          <uib-tab heading="Small Button" classes="btn-sm">Tab 2 content</uib-tab>
+        </uib-tabset>
+      </div> <!-- ./indexBsTabController -->
+
+      <hr><footer>Esta es una aplicaci&oacute;n de ejemplo.</footer>
+
+
+
+
+    </section><!-- /.container -->    
+  </div><!-- /.ng-app. -->
+
+  <!-- External Scripts -->
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
+  <script src="node_modules/angular-touch/angular-touch.js"></script>
+  <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script src="node_modules/lodash/lodash.js"></script>
+
+  <!-- Internal Scripts -->
+  <!-- In the order of scripting, put each of the javascript scripts so that Angular works correctly. -->
+  <!-- Angular Modules. -->
+  <script src="src/index.module.js"></script>
+  <script src="src/products-details.directive.js"></script>
+  <script src="src/index.boolean.filter.js"></script>
+  <script src="src/index.Identifier.filter.js"></script>
+  <script src="src/index.login_Service.js"></script>
+  <script src="src/index.blog_Service.js"></script>
+  <script src="src/bootstrap/index.bs_alert_controller.js"></script>
+  <script src="src/bootstrap/index.bs_modal_controller.js"></script>
+  <script src="src/bootstrap/index.bs_tabs_controller.js"></script>
+  <script src="src/index.index_controller.js"></script>
+  <script src="src/index.navBar_controller.js"></script>
+  <script src="src/index.login_controller.js"></script>
+  <script src="src/index.blogActivo_controller.js"></script>
+  <script src="src/index.blogEliminado_controller.js"></script>
+</body>

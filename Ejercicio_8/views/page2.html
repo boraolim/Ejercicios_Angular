@@ -1,0 +1,53 @@
+<!-- Lista de blogs eliminados registrados.-->
+<div>
+  <!-- Area de navegación. -->
+  <div>
+    <div ng-if="vm.isActiveUser()" ng-init="vm.isActiveUser()===true">
+      <!-- Si el usuario está activo, muestro la tabla. -->
+      <h2>Lista de blogs eliminados.</h2>
+
+      <!-- Lista de blogs eliminados -->
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id:</th>
+              <th>Comentario:</th>
+              <th>Tipo de comentario:</th>
+              <th>Nombre del producto:</th>
+              <th>Autor:</th>
+              <th>Prioritario:</th>
+              <th>Fecha de alta:</th>
+              <th>Fecha de actualizacion:</th>
+              <th>Operaciones:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in vm.model.eliminadoBlog | orderBy: ['-flgPrioritario', 'idComentario'] track by (item.idComentario)" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
+              <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
+              <td><span ng-bind="item.comentarioTxt"></span></td>
+              <td><span ng-bind="item.tipoComentario"></span></td>
+              <td><span ng-bind="item.nombreProducto"></span></td>
+              <td><span ng-bind="item.autorComentario"></span></td>
+              <td><span ng-bind="item.flgPrioritario | inputboolToText"></span></td>
+              <td><span ng-bind="item.fechaAlta | date: 'dd/MM hh:mm'"></span></td>
+              <td><span ng-bind="item.fechaActualizacion | date: 'dd/MM hh:mm'"></span></td>
+              <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
+                <td><a class="btn btn-default" href="#" ng-click="vm.restaurarComentario(item.idComentario)"><i class="fa fa-sign-out" aria-hidden="true"></i> Restaurar</a></td>
+              </div>
+            </tr>
+          </tbody>
+        </table> <!-- ./ table-->
+      </div> <!-- ./table-responsive-->
+    </div>
+
+    <!-- Si no está autenticado, se mostrará la pantalla de inicio. -->
+    <div ng-if="!vm.isActiveUser()">
+      <div class="jumbotron">
+        <div class="container">
+          <p>Pulse el botón <strong>Iniciar sesi&oacute;n</strong> para entrar a esta aplicaci&oacute;n.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
