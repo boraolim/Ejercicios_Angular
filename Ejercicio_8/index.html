@@ -81,14 +81,17 @@
           <div ng-transclude></div>
         </script>
       
-        <products-details-directive title="Prueba de Directiva" onchangetitle="vm.theChangeTitle">
+        <products-details-directive title="Prueba de Directiva de Angular JS" onchangetitle="vm.theChangeTitle">
         </products-details-directive>
+
+        <hr>
 
         <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">{{alert.msg}}</div>
         <div uib-alert template-url="alert.html" style="background-color:#fa39c3;color:white">A happy alert!</div>
         <button type="button" class='btn btn-default' ng-click="vm.addAlert()">Add Alert</button>
       </div> <!-- ./indexBsAlertController -->
 
+      <hr>
 
       <h1>Dialog modal</h1>   
       <div ng-controller="indexController as pc">
@@ -167,6 +170,7 @@
   <!-- Internal Scripts -->
   <!-- In the order of scripting, put each of the javascript scripts so that Angular works correctly. -->
   <!-- Angular Modules. -->
+  <!--
   <script src="src/index.module.js"></script>
   <script src="src/products-details.directive.js"></script>
   <script src="src/index.boolean.filter.js"></script>
@@ -181,4 +185,7 @@
   <script src="src/index.login_controller.js"></script>
   <script src="src/index.blogActivo_controller.js"></script>
   <script src="src/index.blogEliminado_controller.js"></script>
+  -->
+
+  <script src="app/dist/all.min.js"></script>
 </body>

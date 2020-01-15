@@ -12,7 +12,7 @@
     function productsDetailsDirective() {
 
         var directive = {
-            templateUrl: "./products-details.template.html",
+            templateUrl: "./views/templates/products-details.template.html",
             restrict: "EA",
             scope: {
                 title : "@",
@@ -20,7 +20,7 @@
             },
             controller : function($scope) {
                 $scope.changeTitle = function() {
-                    title = "¡El texto cambió!";
+                    title = "¡El texto ha cambiado! Gracias por usar esta directiva de usuario de Angular JS y a la Pelikan.";
                     $scope.onchangetitle()(title);
                 }
             }
@@ -28,4 +28,4 @@
 
         return directive;
     }   
-})();
+})(); // Fin de la directiva de Angular JS.
