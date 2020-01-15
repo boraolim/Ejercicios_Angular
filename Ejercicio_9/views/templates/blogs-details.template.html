@@ -1,9 +1,15 @@
-<h3 ng-bind="title"></h3>
-<button class="btn btn-primary" ng-click="changeTitle()">Prueba de cambio de título.</button>
-<hr>
+<h1 ng-bind="title"></h1>
 <div>
-  <button class="btn btn-info" ng-click="addnewblog()">Agregar nuevo blog.</button>
+  <button class="btn btn-info" ng-click="changeTitle()">Agregar nuevo blog.</button>
+
+  <!-- Validar aquí si salen los valores.-->
+  <!--<p ng-bind="title"></p>-->
+  <p><span ng-bind="blogs"></span></p>
+  <p>Usuario activo: <span ng-bind="nombreusuario"></span></p>
+  <p>Flag de autenticación: <span ng-bind="isactivo"></span></p>
 </div>
+
+<!--https://codepen.io/MelissaMMDP/pen/QNoEjp-->
 
 <!-- Lista de blogs activos -->
 <div class="table-responsive">
@@ -22,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] | filter : { flgEliminado : false } track by (item.idComentario)" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
+      <tr ng-repeat="item in blogs | orderBy: ['-flgPrioritario', 'idComentario'] | filter : { flgEliminado : false } track by (item.idComentario)" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
         <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
         <td><span ng-bind="item.comentarioTxt"></span></td>
         <td><span ng-bind="item.tipoComentario"></span></td>
@@ -32,19 +38,19 @@
         <td><span ng-bind="item.fechaAlta | date: 'dd/MM hh:mm'"></span></td>
         <td><span ng-bind="item.fechaActualizacion | date: 'dd/MM hh:mm'"></span></td>
         <td>
-          <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
+          <div ng-if="item.autorComentario===nombreusuario" ng-init="item.isActivo===true">
             <a class="btn btn-default " ng-href="#!/blogDetail/{{item.idComentario}}?idComentario={{item.idComentario}}"><i class="fa fa-id-card-o" aria-hidden="true"></i> Detalle</a>
           </div>
         </td>
 
         <td>
-          <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
+          <div ng-if="item.autorComentario===nombreusuario" ng-init="item.isActivo===true">
             <a class="btn btn-default" ng-href="#!/blogEdit/{{item.idComentario}}?idComentario={{item.idComentario}}"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
           </div>
         </td>
         <td>
-          <div ng-if="item.autorComentario===vm.isUserName()" ng-init="vm.model.isLogged===true">
-            <a class="btn btn-default" href="#" ng-click="vm.eliminarComentario(item.idComentario)"><i class="fa fa-eraser" aria-hidden="true"></i> Eliminar</a>
+          <div ng-if="item.autorComentario===nombreusuario" ng-init="item.isActivo===true">
+            <a class="btn btn-default" href="#" ng-click="deleteBlog(item.idComentario)"><i class="fa fa-eraser" aria-hidden="true"></i> Eliminar</a>
           </div>
         </td>
     </tr>

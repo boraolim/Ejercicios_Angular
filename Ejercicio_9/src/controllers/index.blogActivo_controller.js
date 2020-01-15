@@ -31,7 +31,9 @@
         flgPrioritario : false,
         flgAlta: true,
         flgEdicion : false,
-        flgEliminado : false
+        flgEliminado : false,
+        userName : "",
+        isActivo : false
       },
       arryNombreProducto : [],
       detailComentario : null
@@ -51,7 +53,6 @@
 
     // Llamado de la directiva.
     vm.theChangeTitle = theChangeTitle;
-    vm.theAddNewBlog = theAddNewBlog;
 
     // Constructor.
     initialize();
@@ -79,6 +80,8 @@
       vm.model.blogObjeto.flgAlta = true;
       vm.model.blogObjeto.flgEdicion = false;
       vm.model.blogObjeto.flgEliminado = false;
+      vm.model.blogObjeto.isActivo = false;
+      vm.model.blogObjeto.userName = "";
 
       // Aquí verifico si existe un parametro llamado 'blogId'.
       // Si no existe, paso de largo. En caso contrario, obtengo el blog existente.
@@ -143,7 +146,9 @@
         fechaActualizacion : "",
         flgAlta : true,
         flgEdicion : false,
-        flgEliminado : false
+        flgEliminado : false,
+        userName : isUserName(),
+        isActivo : isActiveUser()
       };
 
       // Guardo el último identificador del comentario.
@@ -222,12 +227,8 @@
       redirectToMain();
     }
 
-    function theChangeTitle(title) {
-      alert(title);
-    }
-
-    function theAddNewBlog(title) {
-      window.alert(title);
+    function theChangeTitle(title, nombreUsuario, isActivo) {
+      window.alert(title + ' Usuario: ' + nombreUsuario + ' Status: ' + isActivo);
     }
   }
 })(); // Fin de la sección de controladores.

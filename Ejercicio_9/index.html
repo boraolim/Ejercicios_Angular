@@ -21,7 +21,7 @@
     <!-- Static navbar -->
     <div ng-controller="indexDropdownController as vm">
 
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="indexLoginController as vm">
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="indexLoginController as vm">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -92,7 +92,8 @@
   <!-- Angular Modules. -->
   <script src="src/index.module.js"></script>
   <script src="src/directives/products-details.directive.js"></script>
-  <script src="src/directives/index.blogs-details.directive.js"></script>
+  <script src="src/directives/index.blogs-details.directive.js"></script>    
+  <!--<script src="src/directives/index.blogsdeleted-details.directive.js"></script>-->
   <script src="src/filters/index.boolean.filter.js"></script>
   <script src="src/filters/index.Identifier.filter.js"></script>
   <script src="src/services/index.login_Service.js"></script>
@@ -105,8 +106,5 @@
   <script src="src/controllers/index.login_controller.js"></script>
   <script src="src/controllers/index.blogActivo_controller.js"></script>
   <script src="src/controllers/index.blogEliminado_controller.js"></script>
-  
-  <!--
-  <script src="app/dist/all.min.js"></script>  
-  -->
+    
 </body>

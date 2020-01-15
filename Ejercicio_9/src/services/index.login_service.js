@@ -30,6 +30,7 @@
     service.setIsLogged = setIsLogged;
     service.setUserName = setUserName;
     service.getIsLogged = getIsLogged;
+    service.getUserName = getUserName;
     
     // Devolvemos el scope.
     return service;
@@ -50,5 +51,10 @@
     function getIsLogged() {
       return service.flgIsLogged;
     }
-  } 
+    
+    // Mostrar el nombre de usuario activo.
+    function getUserName() {
+      return service.userName;
+    }
+  }
 })(); // Fin del servicio.
