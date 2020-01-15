@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] track by (item.idComentario)" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
+            <tr ng-repeat="item in vm.model.nuevoBlog | orderBy: ['-flgPrioritario', 'idComentario'] | filter : { flgEliminado : false } track by (item.idComentario)" ng-style="item.flgPrioritario == true ? {'background-color':'#FFD700','font-weight': '700'} :''">
               <td><span ng-bind="::item.idComentario | inputIdToText"></span></td>
               <td><span ng-bind="item.comentarioTxt"></span></td>
               <td><span ng-bind="item.tipoComentario"></span></td>

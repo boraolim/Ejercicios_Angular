@@ -158,7 +158,7 @@
     // Eliminar un blog existente.
     function eliminarComentario(id) {
       // Obtengo de la lista de los blogs activos el blog con el Id seleccionado.
-      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id);
+      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id && obj.flgEliminado === false);
 
       // Asigno valores a los atributos por el indice.
       blogService.blogsNuevos[objIndex].autorComentario = isUserName(),
@@ -167,12 +167,6 @@
 
       // Tomo el objeto modificado para asignarselo a una variable.
       var _obj = blogService.blogsNuevos[objIndex];
-
-      // Elimino el objeto seleccionado de la lista de blogs nuevos sobre el indice.
-      blogService.blogsNuevos.splice(objIndex, 1);
-
-      // Lo inserto a los blogs eliminados.
-      blogService.blogsEliminados.push(_obj);
 
       // Total de blogs activos hasta ahora...
       vm.model.totalRows = blogService.blogsNuevos.length;
@@ -187,7 +181,7 @@
     // Mostrar un comentario existente.
     function mostrarComentario(id) {
       // Obtengo de la lista de los blogs activos el blog con el Id seleccionado.
-      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id);
+      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id && obj.flgEliminado === false);
 
       // Obtengo el objeto.
       var obj = blogService.blogsNuevos[objIndex];

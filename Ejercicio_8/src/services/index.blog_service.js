@@ -17,9 +17,6 @@
     // Arreglo de blogs nuevos.
     service.blogsNuevos = [];
 
-    // Arreglo de blogs eliminados.
-    service.blogsEliminados = [];
-
     // Arreglo de tipos de productos.
     service.tipoProductos = [{ id: 0, name: "PoliciyCheck" },
                              { id: 1, name: "AutoCheck" },
@@ -28,7 +25,6 @@
 
     // Funciones internas.
     service.getBlogsActivos = getBlogsActivos;
-    service.getBlogsEliminados = getBlogsEliminados;
     service.getTiposProductos = getTiposProductos;
 
     // Devolvemos el scope.
@@ -37,11 +33,6 @@
     // Función que muestra los blogs activos.
     function getBlogsActivos() {
       return service.blogsNuevos;
-    }
-
-    // Función que muestra los blogs eliminados.
-    function getBlogsEliminados() {
-      return service.blogsEliminados;
     }
 
     // Función que devuelve los tipos de productos.

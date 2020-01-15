@@ -55,7 +55,7 @@
 
     // Función que devuelve los blogs eliminados.
     function getBlogs() {
-      return blogService.blogsEliminados;
+      return blogService.blogsNuevos;
     }
 
     // --------------------------------
@@ -70,21 +70,12 @@
     // Reataurar comentario.
     function restaurarComentario(id) {
       // Obtengo el indice de la lista de los blogs eliminados el blog con el Id seleccionado.
-      var objIndex = blogService.blogsEliminados.findIndex(obj => obj.idComentario === id);
+      var objIndex = blogService.blogsNuevos.findIndex(obj => obj.idComentario === id && obj.flgEliminado === true);
 
       // Actualizo los atributos del blog activo por el indice.
-      blogService.blogsEliminados[objIndex].autorComentario = isUserName(),
-      blogService.blogsEliminados[objIndex].FechaActualizacion = new Date();
-      blogService.blogsEliminados[objIndex].FlgEliminado = false;
-
-      // Tomo el objeto modificado para asignarselo a una variable.
-      var _obj = blogService.blogsEliminados[objIndex];
-
-      // Elimino el objeto seleccionado de la lista de blogs eliminados sobre el indice.
-      blogService.blogsEliminados.splice(objIndex, 1);
-
-      // Lo inserto a los blogs nuevos.
-      blogService.blogsNuevos.push(_obj);
+      blogService.blogsNuevos[objIndex].autorComentario = isUserName(),
+      blogService.blogsNuevos[objIndex].fechaActualizacion = new Date();
+      blogService.blogsNuevos[objIndex].flgEliminado = false;
 
       // Redirecciono a la pantalla principal.
       redirectToMain();
