@@ -1,0 +1,43 @@
+<!-- Pantalla de captura de comentarios.-->
+
+<div ng-if="vm.isActiveUser()" ng-init="vm.isActiveUser()===true">
+  <!-- Si el usuario está activo, muestro la pantalla de edición. -->
+  <h2>Detalle del blog <span ng-bind="::vm.model.blogObjeto.idComentario | inputIdToText"></span></h2>
+
+  <div class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="txtComentario" class="col-lg-2 control-label">Comentario:</label>
+      <div class="col-lg-10">
+        <input id="txtComentario" type="text" class="form-control" ng-model="vm.model.blogObjeto.comentarioTxt" readonly/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="txtTipoComentario" class="col-lg-2 control-label">Tipo de comentario:</label>
+      <div class="col-lg-10">
+        <input id="txtTipoComentario" type="text" class="form-control" ng-model="vm.model.blogObjeto.tipoComentario" readonly/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="txtProductoDirigido" class="col-lg-2 control-label">Nombre del producto dirigido:</label>
+      <div class="col-lg-10">
+        <input id="txtProductoDirigido" type="text" class="form-control" ng-model="vm.model.blogObjeto.nombreProducto" readonly/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Prioritario:</label>
+      <div class="col-lg-10">
+        <label class="form-control readonly" ng-bind="vm.model.blogObjeto.flgPrioritario | inputboolToText"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <button ng-click="vm.redirectToMain()" class="btn btn-primary">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

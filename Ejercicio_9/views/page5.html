@@ -1,0 +1,48 @@
+<!-- Pantalla de modificación de comentarios.-->
+
+<div ng-if="vm.isActiveUser()" ng-init="vm.isActiveUser()===true">
+  <!-- Si el usuario está activo, muestro el detalle. -->
+  <h2>Modificar el blog <span ng-bind="::vm.model.blogObjeto.idComentario | inputIdToText"></span></h2>
+
+  <div class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="txtComentario" class="col-lg-2 control-label">Comentario:</label>
+      <div class="col-lg-10">
+        <input id="txtComentario" type="text" class="form-control" ng-model="vm.model.blogObjeto.comentarioTxt">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Tipo de comentario:</label>
+      <div class="col-lg-10">
+        <label class="form-check-label">
+          <input type="radio" name="Privacity" value="Publico" class="form-check-input" ng-model="vm.model.blogObjeto.tipoComentario"> Público
+        </label>
+        <label class="form-check-label">
+          <input type="radio" name="Privacity" value="Privado" class="form-check-input" ng-model="vm.model.blogObjeto.tipoComentario"> Privado
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cboProducto" class="col-lg-2 control-label">Nombre del producto dirigido:</label>
+      <div class="col-lg-10">
+        <select id="cboProducto" class="form-control" ng-options="operator.name as operator.name for operator in vm.model.arryNombreProducto" ng-model="vm.model.blogObjeto.nombreProducto"></select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="chkPriotirario" class="col-lg-2 control-label">Prioritario:</label>
+      <div class="col-lg-10">
+        <label><input type="checkbox" ng-model="vm.model.blogObjeto.flgPrioritario"></label>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="vm.model.blogObjeto.flgEdicion">
+      <div class="col-lg-offset-2 col-lg-10">
+        <button ng-click="vm.actualizarComentario(vm.model.blogObjeto.idComentario)" class="btn btn-primary">Guardar cambios</button>
+        <button ng-click="vm.redirectToMain()" class="btn btn-default">Cancelar edici&oacute;n</button>
+      </div>
+    </div>
+  </div>
+</div>
