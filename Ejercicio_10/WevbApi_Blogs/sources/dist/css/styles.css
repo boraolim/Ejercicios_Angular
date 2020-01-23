@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.05em !important;
+  color: #333333 !important;
+  padding-top: 65px !important;
+  padding-bottom: 20px !important; }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+table, thead, tr, tbody, th, td {
+  text-align: center;
+  vertical-align: middle; }
+
+.table td {
+  text-align: center;
+  vertical-align: middle; }
+
+form.tab-form-demo .tab-pane {
+  margin: 20px 20px; }
+
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 3; } }
