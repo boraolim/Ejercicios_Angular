@@ -1,0 +1,59 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>Mi aplicacion en Angular</title>
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="app/css/styles.css">
+</head>
+<body class="unselectable container">
+
+  <!-- Angular App. -->
+  <div ng-app="indexModule" class="unselectable container">
+    <div ng-controller="indexController as vm">
+      <h2>Prueba de validación de cuenta de usuario</h2>
+  
+      <form name="form" ng-submit="vm.registerPwd()" role="form" novalidate>
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"/>
+          <span ng-if="form.password.$error.pattern">Formato de contraseña incorrecto.</span>
+          <span ng-if="form.password.$error.minlength" class="has-error">Mínimo 8 caracteres.</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.confirm-password.$invalid && !form.confirm-password.$pristine }">
+          <label for="confirm-password">Confirmar contraseña:</label>
+          <input type="password" name="confirmPassword" id="confirm-password" class="form-control" ng-model="formData.confirmpwd" required ng-minlength="8" ng-maxlength="20" ng-pattern="formData.password" equal="{{formData.password}}"/>
+          <span ng-if="form.confirmPassword.$error.equal" class="has-error">Las contraseñas no coinciden.</span>
+        </div>
+        <div class="form-actions">
+          <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Registrar usuario</button>
+        </div>
+      </form>
+    </div><!-- /.controller -->
+  </div><!-- /.ng-app. -->
+  <!-- Fuente: https://jsfiddle.net/boraolim/xLbrtkqm/ -->
+
+  <!-- External Scripts -->
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
+  <script src="node_modules/angular-touch/angular-touch.js"></script>
+  <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script src="node_modules/lodash/lodash.js"></script>
+
+  <!-- Internal Scripts -->
+  <!-- In the order of scripting, put each of the javascript scripts so that Angular works correctly. -->
+  <!-- Angular Modules. -->
+  <script src="src/index.module.js"></script>
+  <script src="src/directives/index.blogs-details.directive.js"></script>
+  <script src="src/controllers/index.index_controller.js"></script> 
+    
+</body>
