@@ -15,7 +15,7 @@
   "author": "Olimpo Bonilla Ramirez",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.0",
     "angular-route": "^1.7.9",
     "bootstrap": "^3.4.1",
     "font-awesome": "^4.7.0"
