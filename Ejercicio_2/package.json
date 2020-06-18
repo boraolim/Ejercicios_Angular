@@ -4,7 +4,7 @@
   "description": "Ejercicio de Angular para capturar datos.",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {},
